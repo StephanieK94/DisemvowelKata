@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Disemvowel
 {
@@ -6,12 +7,24 @@ namespace Disemvowel
     {
         static void Main(string[] args)
         {
-            string troll = "Here is a trolling comment";
+            var path = Directory.GetCurrentDirectory();
 
-            DisemvowelComment disemvoweler = new DisemvowelComment();
-            
-            string neutralisedComment = disemvoweler.RemoveAllVowelsFrom(troll);
-            Console.WriteLine(neutralisedComment);
+            using(StreamReader sr = new StreamReader($"{path}\\TrollComments.txt"))
+            {
+                while(!sr.EndOfStream)
+                {
+                    //var count =1;
+                    string trollComment = sr.ReadLine();
+
+                    DisemvowelComment disemvoweler = new DisemvowelComment();
+                    
+                    string neutralisedComment = disemvoweler.RemoveAllVowelsFrom(trollComment);
+                    
+                    Console.WriteLine($"Your troll's comment has now been reduced to: \"{neutralisedComment}\"");
+                    //count++;
+                }
+            }
+
         }
     }
 
