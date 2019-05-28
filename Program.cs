@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Disemvowel
 {
@@ -11,18 +12,16 @@ namespace Disemvowel
 
             using(StreamReader sr = new StreamReader($"{path}\\TrollComments.txt"))
             {
+                List<string> trollComments = new List<string>();
+
                 while(!sr.EndOfStream)
                 {
-                    //var count =1;
-                    string trollComment = sr.ReadLine();
-
-                    DisemvowelComment disemvoweler = new DisemvowelComment();
-                    
-                    string neutralisedComment = disemvoweler.RemoveAllVowelsFrom(trollComment);
-                    
-                    Console.WriteLine($"Your troll's comment has now been reduced to: \"{neutralisedComment}\"");
-                    //count++;
+                    string line = sr.ReadLine();
+                    trollComments.Add(line);
                 }
+
+                DisemvowelComment remover = new DisemvowelComment();
+                remover.RemoveAllVowelsFrom(trollComments);
             }
 
         }
