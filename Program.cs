@@ -16,6 +16,4 @@ namespace Disemvowel
             remover.RemoveAllVowelsFrom(trollComments);
         }
     }
-
-
 }
