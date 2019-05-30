@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-class FileReader
+class FileStream
 {
-    public List<string> ReadFile()
+    public List<string> ReadFile(string pathName)
     {
-        var path = Directory.GetCurrentDirectory();
-
-        using(StreamReader sr = new StreamReader($"{path}\\TrollComments.txt"))
+        using(StreamReader sr = new StreamReader($"{pathName}"))
         {
             List<string> trollComments = new List<string>();
 
@@ -18,6 +16,19 @@ class FileReader
             }
 
             return trollComments;
+        }
+    }
+
+    public void WriteFile(List<string> alteredTrollComments, string pathName)
+    {
+        using(StreamWriter sw = new StreamWriter(pathName))
+        {
+            sw.WriteLine("Here are your trolls comments now: ");
+            
+            foreach(var line in alteredTrollComments)
+            {
+                sw.WriteLine(line);
+            }
         }
     }
 }

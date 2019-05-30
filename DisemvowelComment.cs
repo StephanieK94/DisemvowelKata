@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 class DisemvowelComment
 {
-    public void RemoveAllVowelsFrom(List<string> trollComments)
+    public List<string> RemoveAllVowelsFrom(List<string> trollComments)
     {
-        char[] vowels = {'a','e','i','o','u'};
-        //string vowels ="aeiou";
+        string[] vowels = {"a","e","i","o","u"};
 
         List<string> alteredComments = new List<string>();
 
@@ -17,22 +16,12 @@ class DisemvowelComment
 
             foreach(var vowel in vowels)
             {
-                newComment = newComment.Replace(vowel.ToString(), "");
+                newComment = newComment.Replace(vowel, "");
             }
 
-            //string newComment = new string(comment.Where(x => !vowels.Contains(x)).ToArray());
-            
             alteredComments.Add(newComment);
         }
 
-        PrintDisemvoweledComment(alteredComments);
-    }
-
-    private void PrintDisemvoweledComment(List<string> commentsList)
-    {
-        foreach(string comment in commentsList)
-        {
-            Console.WriteLine($"Your troll's comment has now been reduced to: \"{comment}\"");      // return this to console
-        }
+        return alteredComments;
     }
 }

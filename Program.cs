@@ -8,12 +8,17 @@ namespace Disemvowel
     {
         static void Main(string[] args)
         {
-            FileReader fr = new FileReader();
-            
-            List<string> trollComments = fr.ReadFile();
+            var path = Directory.GetCurrentDirectory();
+            var pathInput = $"{path}\\TrollComments.txt";
 
+            FileStream fs = new FileStream(); 
+            List<string> trollComments = fs.ReadFile(pathInput);
+            
             DisemvowelComment remover = new DisemvowelComment();
-            remover.RemoveAllVowelsFrom(trollComments);
+            trollComments = remover.RemoveAllVowelsFrom(trollComments);
+
+            var pathOutput = $"{path}\\OutputComments.txt";
+            fs.WriteFile(trollComments, pathOutput);
         }
     }
 }
