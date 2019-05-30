@@ -13,11 +13,12 @@ class DisemvowelComment
 
         foreach(var comment in trollComments)
         {
-            string newComment = comment.Replace('a'.ToString(), "");
-            newComment = newComment.Replace('e'.ToString(), "");
-            newComment = newComment.Replace('i'.ToString(), "");
-            newComment = newComment.Replace('o'.ToString(), "");
-            newComment = newComment.Replace('u'.ToString(), "");
+            string newComment = comment;
+
+            foreach(var vowel in vowels)
+            {
+                newComment = newComment.Replace(vowel.ToString(), "");
+            }
 
             //string newComment = new string(comment.Where(x => !vowels.Contains(x)).ToArray());
             
